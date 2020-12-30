@@ -9,6 +9,8 @@ import BattlableModel from 'star-wars-dashboard/models/battlable';
 interface IUiBattleManagerComponentArgs {
   mode: string;
   setMode: () => void;
+  people: BattlableModel[];
+  starships: BattlableModel[];
 }
 export default class UiBattleManagerComponent extends Component<IUiBattleManagerComponentArgs> {
   @service('store') store!: StoreService;
@@ -20,21 +22,21 @@ export default class UiBattleManagerComponent extends Component<IUiBattleManager
   @tracked firstItem: BattlableModel | null = null;
   @tracked secondItem: BattlableModel | null = null;
 
-  get peoples() {
-    return this.store.peekAll('people');
+  get people() {
+    return this.args.people ?? [];
   }
 
   get starships() {
-    return this.store.peekAll('starship');
+    return this.args.starships ?? [];
   }
 
   get battlables(): BattlableModel[] {
-    return [ ...this.peoples.toArray(), ...this.starships.toArray() ];
+    return [ ...this.people.toArray(), ...this.starships.toArray() ];
   }
 
   get models() {
     if (this.mode === 'people') {
-      return this.peoples;
+      return this.people;
     } else if (this.mode === 'starship') {
       return this.starships;
     } else {

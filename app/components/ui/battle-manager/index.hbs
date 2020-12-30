@@ -26,11 +26,11 @@
     <div class="row mt-4">
       <div class="col-sm-6 form-group">
         <label for="name">Battle Name</label>
-        <input class="form-control" {{on 'input' this.updateBattleName}} id="name" value={{this.battleName}} />
+        <input class="form-control" data-test-name {{on 'input' this.updateBattleName}} id="name" value={{this.battleName}} />
       </div>
       {{#if this.validationMessage}}
         <div class="col-sm-6">
-          <div class="alert alert-warning" role="alert">
+          <div class="alert alert-warning" role="alert" data-test-alert>
             {{this.validationMessage}}
           </div>
         </div>
@@ -38,7 +38,7 @@
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <button class="btn btn-primary" type="button" disabled={{not this.canCreateBattle}} {{on 'click' this.createBattle}}>Create battle</button>
+        <button class="btn btn-primary" data-test-create-button type="button" disabled={{not this.canCreateBattle}} {{on 'click' this.createBattle}}>Create battle</button>
       </div>
     </div>
   </div>

@@ -13,6 +13,12 @@ export default class BattleConstructorController extends Controller {
     this.mode = mode;
   }
 
+  get people() {
+    return this.store.peekAll('people');
+  }
+  get starships() {
+    return this.store.peekAll('starship');
+  }
   get battles() {
     return this.store.peekAll('battle').toArray().sortBy('date').reverse();
   }
