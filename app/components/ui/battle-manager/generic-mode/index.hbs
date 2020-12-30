@@ -1,0 +1,23 @@
+<div class="row mt-4">
+  <div class="col-sm-5">
+    <PowerSelect
+      @selected={{@firstItem}}
+      @options={{without @secondItem @models}}
+      @searchEnabled={{true}}
+      @searchField="name"
+      @onChange={{@addFirstBattleItem}} as |option|>
+      {{option.id}}# {{option.name}}
+    </PowerSelect>
+  </div>
+  <div class="col">VS</div>
+  <div class="col-sm-5">
+    <PowerSelect
+      @selected={{@secondItem}}
+      @options={{without @firstItem @models}}
+      @searchEnabled={{true}}
+      @searchField="name"
+      @onChange={{@addSecondBattleItem}} as |option|>
+    {{option.id}}# {{option.name}}
+  </PowerSelect>
+  </div>
+</div>

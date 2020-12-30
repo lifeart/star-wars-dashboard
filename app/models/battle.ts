@@ -1,10 +1,11 @@
-import Model, { hasMany } from '@ember-data/model';
+import Model, { hasMany, attr } from '@ember-data/model';
 // eslint-disable-next-line ember/use-ember-data-rfc-395-imports
 import DS from 'ember-data';
 import BattlableModel from './battlable';
 
 export default class BattleModel extends Model  {
   date = new Date();
+  @attr('string', { defaultValue() { return 'Unknown Name'; }}) name!: string;
   @hasMany('battlable', { polymorphic: true, async: false }) battlables!: DS.SyncHasMany<BattlableModel>;
   get winner(): BattlableModel | null {
     if (this.battlables.length == 0) {

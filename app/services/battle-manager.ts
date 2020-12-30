@@ -13,9 +13,10 @@ export default class BattleManagerService extends Service {
   removeCandidate(candidateModel: BattlableModel) {
     this.candidates = this.candidates.filter((el)=> el !== candidateModel);
   }
-  createBattle() {
+  createBattle(name = 'default battle') {
     this.store.createRecord('battle', {
-      battlables: this.candidates
+      battlables: this.candidates,
+      name
     });
     this.candidates = [];
   }

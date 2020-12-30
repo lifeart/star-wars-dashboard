@@ -1,8 +1,5 @@
 import Component from '@glimmer/component';
 import BattlableModel from 'star-wars-dashboard/models/battlable';
-import { inject as service } from '@ember/service';
-import BattleManagerService from 'star-wars-dashboard/services/battle-manager';
-import { action } from '@ember/object';
 
 interface UiCartArgs {
   model: BattlableModel;
@@ -11,10 +8,6 @@ interface UiCartArgs {
 const EXCLUDED_ATTRIBUTES = ['name'];
 
 export default class UiCart extends Component<UiCartArgs> {
-  @service('battle-manager') battleManager!: BattleManagerService;
-  get isCandidate() {
-    return this.battleManager.candidates.includes(this.model);
-  }
   get model() {
     return this.args.model;
   }
@@ -25,17 +18,10 @@ export default class UiCart extends Component<UiCartArgs> {
       if (!EXCLUDED_ATTRIBUTES.includes(name)) {
         fields.push({
           name,
-          value: model[name as keyof BattlableModel]
+          value: model[name as keyof BattlableModel] ?? 'N/A'
         })
       }
     });
     return fields;
-  }
-  @action toggleBattle() {
-    if (this.isCandidate) {
-      this.battleManager.removeCandidate(this.model);
-    } else {
-      this.battleManager.addCandidate(this.model);
-    }
   }
 }

@@ -1,4 +1,11 @@
-{{#each @model as |model|}}
-  <Ui::Cart @model={{model}} />
-{{/each}}
+<div class="container mt-4">
+<div class="row justify-content-md-center">
+  <div class="col-sm">
+      <Ui::BattleManager />
+  </div>
+  <div class="col-sm">
+      <Ui::BattleList />
+  </div>
+</div>
 {{outlet}}
+</div>
