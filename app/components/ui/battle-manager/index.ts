@@ -46,12 +46,14 @@ export default class UiBattleManagerComponent extends Component<IUiBattleManager
     this.battleManager.removeCandidate(this.firstItem as BattlableModel);
     this.battleManager.addCandidate(item);
     this.firstItem = item;
+    this.autocompleteBattleName();
   }
 
   @action addSecondBattleItem(item: BattlableModel) {
     this.battleManager.removeCandidate(this.secondItem as BattlableModel);
     this.battleManager.addCandidate(item);
     this.secondItem = item;
+    this.autocompleteBattleName();
   }
 
   @action updateBattleName(event: { target: HTMLInputElement }) {
@@ -72,6 +74,10 @@ export default class UiBattleManagerComponent extends Component<IUiBattleManager
     this.firstItem = null;
     this.secondItem = null;
     this.battleName = '';
+  }
+
+  autocompleteBattleName() {
+    this.battleName = [this.firstItem?.name ?? '...', this.secondItem?.name ?? '...'].join(' VS ');
   }
 
   get validationMessage() {
