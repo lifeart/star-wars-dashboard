@@ -21,11 +21,11 @@ module('Integration | Component | ui/battle-manager/button', function(hooks) {
 
     await render(hbs`<Ui::BattleManager::Button @mode="foo" @activeMode={{this.mode}} data-test-btn>Foo</Ui::BattleManager::Button>`);
 
-    assert.dom('[data-test-btn]').hasClass('btn btn-primary');
+    assert.dom('[data-test-btn]').hasClass('btn-primary');
 
     this.set('mode', 'bar');
 
-    assert.dom('[data-test-btn]').hasClass('btn btn-default');
+    assert.dom('[data-test-btn]').hasClass('btn-default');
   });
 
   test('it support event emitting', async function(assert) {
