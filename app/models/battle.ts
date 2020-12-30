@@ -8,15 +8,25 @@ export default class BattleModel extends Model  {
   @attr('string', { defaultValue() { return 'Unknown Name'; }}) name!: string;
   @hasMany('battlable', { polymorphic: true, async: false }) battlables!: DS.SyncHasMany<BattlableModel>;
   get winner(): BattlableModel | null {
-    if (this.battlables.length == 0) {
+    const battlables = this.battlables.toArray();
+
+    if (battlables.length == 0) {
       return null;
     }
-    if (this.battlables.length < 2) {
-      return this.battlables[0];
+    if (battlables.length < 2) {
+      return battlables[0];
     }
-    const sortedItems =  this.battlables.toArray().sort((itemA: BattlableModel, itemB: BattlableModel)=> {
+    const sortedItems = battlables.sort((itemA: BattlableModel, itemB: BattlableModel)=> {
       return itemB.battleValue - itemA.battleValue;
     });
+
+    const battleValue = sortedItems[0].battleValue;
+
+    if (battlables.filterBy('battleValue', battleValue).length > 1) {
+      // if battle values is same, first candidate won, because it's bravest
+      return battlables.findBy('battleValue', battleValue) as BattlableModel;
+    }
+
     return sortedItems[0];
   }
 }
