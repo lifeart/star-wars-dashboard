@@ -1,6 +1,21 @@
-.container {
-  background-color: rgba(255, 255, 255, 0.7);
+body {
+  margin: 0;
+  padding: 0;
 }
+
+
+.container {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+}
+
+.battle-list {
+  overflow-y: scroll;
+  max-height: 90vh;
+}
+
+
+/* code from https://codepen.io/romulomachado/full/WROjRQ
 
 
 /* Animation properties */

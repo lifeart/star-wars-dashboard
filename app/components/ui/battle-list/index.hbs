@@ -1,5 +1,9 @@
 {{yield}}
-
-{{#each this.battles as |battle|}}
+<h3>Battles: <strong>{{this.battles.length}}</strong></h3>
+<div class="battle-list">
+  <div>
+     {{#each this.battles as |battle|}}
     <Ui::Battle @model={{battle}} class="mb-1" />
-{{/each}}
+  {{/each}}
+  </div>
+</div>

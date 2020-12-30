@@ -1,44 +1,40 @@
-<div class="panel">
-  <div class="panel-body">
+<div class="cart">
+  <div class="cart-head">Battle manager</div>
+  <div class="cart-body">
+
+    <form>
+  <div class="form-group"> </div>
+
+    </form>
     <div class="row">
       <div class="col-sm-12">
-           <BsTab as |tab|>
-      <tab.pane @title="People Mode">
-        <Ui::BattleManager::GenericMode
-          @models={{this.peoples}}
+        <Ui::BattleManager::Button @activeMode={{this.mode}} @mode="people" @onClick={{this.setMode}}>People Mode</Ui::BattleManager::Button>
+        <Ui::BattleManager::Button @activeMode={{this.mode}} @mode="starship" @onClick={{this.setMode}}>Starship Mode</Ui::BattleManager::Button>
+        <Ui::BattleManager::Button @activeMode={{this.mode}} @mode="mixed" @onClick={{this.setMode}}>Mixed Mode</Ui::BattleManager::Button>
+      </div>
+      <div class="col-sm-12">
+         <Ui::BattleManager::GenericMode
+          @models={{this.models}}
           @firstItem={{this.firstItem}}
           @secondItem={{this.secondItem}}
           @addFirstBattleItem={{this.addFirstBattleItem}}
           @addSecondBattleItem={{this.addSecondBattleItem}}
         />
-      </tab.pane>
-      <tab.pane @title="Starship Mode">
-        <Ui::BattleManager::GenericMode
-          @models={{this.starships}}
-          @firstItem={{this.firstItem}}
-          @secondItem={{this.secondItem}}
-          @addFirstBattleItem={{this.addFirstBattleItem}}
-          @addSecondBattleItem={{this.addSecondBattleItem}}
-        />
-      </tab.pane>
-      <tab.pane @title="Mixed Mode">
-        <Ui::BattleManager::GenericMode
-          @models={{this.battlables}}
-          @firstItem={{this.firstItem}}
-          @secondItem={{this.secondItem}}
-          @addFirstBattleItem={{this.addFirstBattleItem}}
-          @addSecondBattleItem={{this.addSecondBattleItem}}
-        />
-      </tab.pane>
-    </BsTab>
       </div>
     </div>
 
     <div class="row mt-4">
-      <div class="col-sm-6">
+      <div class="col-sm-6 form-group">
         <label for="name">Battle Name</label>
-        <input {{on 'input' this.updateBattleName}} />
+        <input class="form-control" {{on 'input' this.updateBattleName}} id="name" value={{this.battleName}} />
       </div>
+      {{#if this.validationMessage}}
+        <div class="col-sm-6">
+          <div class="alert alert-warning" role="alert">
+            {{this.validationMessage}}
+          </div>
+        </div>
+      {{/if}}
     </div>
     <div class="row">
       <div class="col-sm-6">
@@ -46,5 +42,4 @@
       </div>
     </div>
   </div>
-
 </div>

@@ -11,6 +11,7 @@ export default class UiBattleManagerComponent extends Component {
   @service('battle-manager') battleManager!: BattleManagerService;
 
   @tracked battleName = '';
+  @tracked mode = 'people';
 
   @tracked firstItem: BattlableModel | null = null;
   @tracked secondItem: BattlableModel | null = null;
@@ -25,6 +26,16 @@ export default class UiBattleManagerComponent extends Component {
 
   get battlables(): BattlableModel[] {
     return [ ...this.peoples.toArray(), ...this.starships.toArray() ];
+  }
+
+  get models() {
+    if (this.mode === 'people') {
+      return this.peoples;
+    } else if (this.mode === 'starship') {
+      return this.starships;
+    } else {
+      return this.battlables;
+    }
   }
 
   @action addFirstBattleItem(item: BattlableModel) {
@@ -45,9 +56,34 @@ export default class UiBattleManagerComponent extends Component {
 
   @action createBattle() {
     this.battleManager.createBattle(this.battleName);
+    this.resetState();
+  }
+
+  @action setMode(mode: string) {
+    this.mode = mode;
+    this.resetState();
+  }
+
+  resetState() {
+    this.firstItem = null;
+    this.secondItem = null;
+    this.battleName = '';
+  }
+
+  get validationMessage() {
+    if (!this.firstItem) {
+      return 'First competitor should be selected';
+    }
+    if (!this.secondItem) {
+      return 'Second competitor should be selected';
+    }
+    if (!this.battleName) {
+      return 'Battle name should not be empty';
+    }
+    return false;
   }
 
   get canCreateBattle() {
-    return this.battleManager.candidates.length > 1;
+    return this.battleManager.candidates.length > 1 && this.battleName;
   }
 }
