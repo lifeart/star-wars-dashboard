@@ -13,12 +13,13 @@ export default class BattleManagerService extends Service {
     this.candidates = this.candidates.filter((el)=> el !== candidateModel);
   }
   createBattle(name = 'default battle') {
-    this.store.createRecord('battle', {
+    const candidates = this.candidates;
+    this.candidates = [];
+    return this.store.createRecord('battle', {
       id: (this.store.peekAll('battle').length as number) + 1,
-      battlables: this.candidates,
+      battlables: candidates,
       name
     });
-    this.candidates = [];
   }
 }
 

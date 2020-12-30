@@ -2,25 +2,46 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+import { run } from '@ember/runloop';
 
 module('Integration | Component | ui/cart', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders people model', async function(assert) {
 
-    await render(hbs`{{ui/cart}}`);
+    const store = this.owner.lookup('service:store');
+    const model = run(() => store.createRecord('people', { name: 'foo' }));
 
-    assert.equal(this.element.textContent.trim(), '');
+    this.set('model', model);
 
-    // Template block usage:
-    await render(hbs`
-      {{#ui/cart}}
-        template block text
-      {{/ui/cart}}
-    `);
+    await render(hbs`<Ui::Cart @model={{this.model}} />`);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom('[data-test-battlable-name]').hasText('foo');
+    assert.dom('[data-test-field]').exists({count: 6});
+  });
+
+  test('it renders starship model', async function(assert) {
+
+    const store = this.owner.lookup('service:store');
+    const model = run(() => store.createRecord('starship', { name: 'foo' }));
+
+    this.set('model', model);
+
+    await render(hbs`<Ui::Cart @model={{this.model}} />`);
+
+    assert.dom('[data-test-battlable-name]').hasText('foo');
+    assert.dom('[data-test-field]').exists({count: 11});
+  });
+
+
+  test('it renders N/A for empty field value', async function(assert) {
+
+    const store = this.owner.lookup('service:store');
+    const model = run(() => store.createRecord('starship', { name: 'foo' }));
+
+    this.set('model', model);
+
+    await render(hbs`<Ui::Cart @model={{this.model}} />`);
+    assert.dom('[data-test-value]').hasText('N/A');
   });
 });

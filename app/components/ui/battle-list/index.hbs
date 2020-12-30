@@ -1,9 +1,7 @@
 {{yield}}
-<h3>Battles: <strong>{{this.battles.length}}</strong></h3>
+<h3>Battles: <strong data-test-battles-count>{{@battles.length}}</strong></h3>
 <div class="battle-list">
-  <div>
-     {{#each this.battles as |battle|}}
-    <Ui::Battle @model={{battle}} class="mb-1" />
-  {{/each}}
-  </div>
+    {{#each @battles as |battle|}}
+      <Ui::Battle data-test-battle @model={{battle}} class="mb-1" />
+    {{/each}}
 </div>

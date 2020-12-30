@@ -1,7 +1,9 @@
 {{!-- code from https://codepen.io/romulomachado/full/WROjRQ --}}
 
-<div class="starwars-demo" {{did-insert this.onInserted}}>
-    <img src="http://svgshare.com/i/Zy.svg" alt="Star" class="star">
-    <img src="http://svgshare.com/i/a2.svg" alt="Wars" class="wars">
-    <h2 class="byline" id="byline">Loading data..</h2>
+<div data-test-preloader class="starwars-demo">
+    <img data-test-image src="http://svgshare.com/i/Zy.svg" alt="Star" class="star">
+    <img data-test-image src="http://svgshare.com/i/a2.svg" alt="Wars" class="wars">
+    <h2 class="byline">
+      {{#each this.chars as |char|}}<span>{{char}}</span>{{/each}}
+    </h2>
 </div>
