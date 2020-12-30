@@ -3,7 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import BattlableModel from 'star-wars-dashboard/models/battlable';
 import { inject as service } from '@ember/service';
 import StoreService from '@ember-data/store';
-
 export default class BattleManagerService extends Service {
   @service('store') store!: StoreService;
   @tracked candidates: BattlableModel[] = [];
@@ -15,6 +14,7 @@ export default class BattleManagerService extends Service {
   }
   createBattle(name = 'default battle') {
     this.store.createRecord('battle', {
+      id: (this.store.peekAll('battle').length as number) + 1,
       battlables: this.candidates,
       name
     });

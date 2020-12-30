@@ -7,6 +7,9 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       enableTypeScriptTransform: true
     },
+    'ember-power-select': {
+      theme: 'bootstrap'
+    },
     'ember-bootstrap': {
       bootstrapVersion: 4,
       importBootstrapCSS: true

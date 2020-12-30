@@ -1,1 +1,8 @@
-{{outlet}}
+<div class="row justify-content-md-center">
+  <div class="col-sm-6">
+     <Ui::Battle @model={{@model}} />
+  </div>
+  <div class="col-sm-6">
+    <LinkTo @route="battle-constructor" class="btb btn-primary">Create new battle</LinkTo>
+  </div>
+</div>

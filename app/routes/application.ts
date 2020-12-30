@@ -12,16 +12,24 @@ export default class ApplicationRoute extends Route {
       this.loadAllModelsPerPage('people'),
       this.loadAllModelsPerPage('starship')
     ]);
+  }
+  afterModel() {
     const peoples = this.store.peekAll('people');
     const starships = this.store.peekAll('starship');
 
     console.log(peoples);
     this.store.createRecord('battle', {
-      battlables: [ peoples.firstObject, peoples.lastObject ]
+      battlables: [ peoples.firstObject, peoples.lastObject ],
+      id: 1,
+      name: 'Test battle'
     });
     this.store.createRecord('battle', {
-      battlables: [ starships.firstObject, starships.lastObject ]
+      battlables: [ starships.firstObject, starships.lastObject ],
+      id: 2,
+      name: 'Second Test battle'
     })
-    return [...peoples.toArray(), ...starships.toArray()];
+  }
+  redirect() {
+    this.transitionTo('battle-constructor');
   }
 }
