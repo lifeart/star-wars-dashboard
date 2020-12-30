@@ -1,9 +1,9 @@
 <div class="card" ...attributes>
   <div class="card-header">
-    <LinkTo @route="battle" @model={{@model}} >{{@model.name}} / {{this.date}}</LinkTo>
+    <LinkTo data-test-link @route="battle" @model={{@model}} >{{@model.name}} / {{this.date}}</LinkTo>
   </div>
   <div class="card-body">
-    <div class="card-text">Winner: <span class="badge bg-success">{{@model.winner.name}}</span></div>
+    <div class="card-text">Winner: <span class="badge bg-success" data-test-winner-name>{{@model.winner.name}}</span></div>
 
     <div class="row mt-4">
       {{#each @model.battlables as |battlable|}}
