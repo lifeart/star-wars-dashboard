@@ -1,4 +1,5 @@
 <button class="btn {{if (eq @mode @activeMode) 'btn-primary' 'btn-default'}}"
-  {{on "click" (fn @onClick @mode)}}
+  {{on "click" (fn (optional @onClick) @mode)}}
   type="button"
+  ...attributes
 >{{yield}}</button>
