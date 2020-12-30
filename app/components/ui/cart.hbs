@@ -1,0 +1,18 @@
+<div class="card w-20" ...attributes>
+  <div class="card-body">
+    <h5 class="card-title">{{@model.battleValue}}, wins: {{@model.wins}}</h5>
+    <p class="card-text">{{@model.name}}</p>
+    <button class="btn btn-primary" type="button" {{on 'click' this.toggleBattle}}>
+      {{#if this.isCandidate}}
+        Remove from battle
+      {{else}}
+        Add to battle
+      {{/if}}
+    </button>
+    <dl>
+      {{#each this.modelFields as |field|}}
+        <Ui::Cart::Field @name={{field.name}} @value={{field.value}} />
+      {{/each}}
+    </dl>
+  </div>
+</div>
