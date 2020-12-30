@@ -6,7 +6,11 @@ import StoreService from '@ember-data/store';
 import BattleManagerService from 'star-wars-dashboard/services/battle-manager';
 import BattlableModel from 'star-wars-dashboard/models/battlable';
 
-export default class UiBattleManagerComponent extends Component {
+interface IUiBattleManagerComponentArgs {
+  mode: string;
+  setMode: () => void;
+}
+export default class UiBattleManagerComponent extends Component<IUiBattleManagerComponentArgs> {
   @service('store') store!: StoreService;
   @service('battle-manager') battleManager!: BattleManagerService;
 
@@ -60,7 +64,7 @@ export default class UiBattleManagerComponent extends Component {
   }
 
   @action setMode(mode: string) {
-    this.mode = mode;
+    this.args.setMode(mode);
     this.resetState();
   }
 
