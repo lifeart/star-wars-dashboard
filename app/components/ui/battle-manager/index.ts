@@ -17,7 +17,6 @@ export default class UiBattleManagerComponent extends Component<IUiBattleManager
   @service('battle-manager') battleManager!: BattleManagerService;
 
   @tracked battleName = '';
-  @tracked mode = 'people';
 
   @tracked firstItem: BattlableModel | null = null;
   @tracked secondItem: BattlableModel | null = null;
@@ -35,9 +34,9 @@ export default class UiBattleManagerComponent extends Component<IUiBattleManager
   }
 
   get models() {
-    if (this.mode === 'people') {
+    if (this.args.mode === 'people') {
       return this.people;
-    } else if (this.mode === 'starship') {
+    } else if (this.args.mode === 'starship') {
       return this.starships;
     } else {
       return this.battlables;

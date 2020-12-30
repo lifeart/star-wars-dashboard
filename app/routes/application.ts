@@ -17,7 +17,6 @@ export default class ApplicationRoute extends Route {
     const peoples = this.store.peekAll('people');
     const starships = this.store.peekAll('starship');
 
-    console.log(peoples);
     this.store.createRecord('battle', {
       battlables: [ peoples.firstObject, peoples.lastObject ],
       id: 1,
