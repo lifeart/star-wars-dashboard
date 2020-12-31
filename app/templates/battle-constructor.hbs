@@ -1,0 +1,13 @@
+<div class="row justify-content-md-center">
+  <div class="col-sm">
+      <Ui::BattleManager
+        @mode={{this.mode}}
+        @setMode={{this.setMode}}
+        @people={{this.people}}
+        @starships={{this.starships}}
+      />
+  </div>
+  <div class="col-sm">
+      <Ui::BattleList @battles={{this.battles}} />
+  </div>
+</div>

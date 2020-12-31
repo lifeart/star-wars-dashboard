@@ -1,0 +1,45 @@
+<div class="cart">
+  <div class="cart-head"><h3>Battle manager</h3></div>
+  <div class="cart-body">
+
+  <form>
+  <div class="form-group"> </div>
+
+    </form>
+    <div class="row">
+      <div class="col-sm-12">
+        <Ui::BattleManager::Button @activeMode={{@mode}} @mode="people" @onClick={{this.setMode}}>People Mode</Ui::BattleManager::Button>
+        <Ui::BattleManager::Button @activeMode={{@mode}} @mode="starship" @onClick={{this.setMode}}>Starship Mode</Ui::BattleManager::Button>
+        <Ui::BattleManager::Button @activeMode={{@mode}} @mode="mixed" @onClick={{this.setMode}}>Mixed Mode</Ui::BattleManager::Button>
+      </div>
+      <div class="col-sm-12">
+         <Ui::BattleManager::GenericMode
+          @models={{this.models}}
+          @firstItem={{this.firstItem}}
+          @secondItem={{this.secondItem}}
+          @addFirstBattleItem={{this.addFirstBattleItem}}
+          @addSecondBattleItem={{this.addSecondBattleItem}}
+        />
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-sm-6 form-group">
+        <label for="name">Battle Name</label>
+        <input class="form-control" data-test-name {{on 'input' this.updateBattleName}} id="name" value={{this.battleName}} />
+      </div>
+      {{#if this.validationMessage}}
+        <div class="col-sm-6">
+          <div class="alert alert-warning" role="alert" data-test-alert>
+            {{this.validationMessage}}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <button class="btn btn-primary" data-test-create-button type="button" disabled={{not this.canCreateBattle}} {{on 'click' this.createBattle}}>Create battle</button>
+      </div>
+    </div>
+  </div>
+</div>
