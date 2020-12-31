@@ -1,5 +1,6 @@
 import Component from '@glimmer/component';
 import BattlableModel from 'star-wars-dashboard/models/battlable';
+import beautifyAttributeName from 'star-wars-dashboard/utils/beautify-attribute-name';
 
 interface UiCartArgs {
   model: BattlableModel;
@@ -17,7 +18,7 @@ export default class UiCart extends Component<UiCartArgs> {
     model.eachAttribute((name: string) => {
       if (!EXCLUDED_ATTRIBUTES.includes(name)) {
         fields.push({
-          name,
+          name: beautifyAttributeName(name),
           value: model[name as keyof BattlableModel] ?? 'N/A'
         })
       }
