@@ -9,4 +9,5 @@ export default class Router extends EmberRouter {
 Router.map(function() {
   this.route('battle', { path: 'battle/:battle_id' });
   this.route('battle-constructor');
+  this.route('battlable', { path: 'battlable/:battlable_id' });
 });

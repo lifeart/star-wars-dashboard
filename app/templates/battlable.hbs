@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-sm-6">
+    <div class="row mb-1">
+      <div class="col-sm-6">
+        <LinkTo @route="battle-constructor" class="btn btn-primary" data-test-create-battle-link>Create new battle</LinkTo>
+      </div>
+    </div>
+    <Ui::Cart @model={{@model}} />
+  </div>
+  <div class="col-sm-6">
+    <Ui::BattleList @battles={{@model.battles}} />
+  </div>
+</div>

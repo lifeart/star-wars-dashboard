@@ -17,5 +17,14 @@ module('Acceptance | happy path', function(hooks) {
     await click('[data-test-create-battle-link]');
 
     assert.equal(currentURL(), '/battle-constructor');
+
+    await click('[data-test-battlable-link]');
+
+    assert.equal(currentURL(), '/battlable/2');
+
+    await click('[data-test-create-battle-link]');
+
+    assert.equal(currentURL(), '/battle-constructor');
+
   });
 });
