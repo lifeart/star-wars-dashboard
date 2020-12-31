@@ -1,6 +1,0 @@
-<button class="btn {{if (eq @mode @activeMode) 'btn-primary' 'btn-default'}}"
-  {{on "click" (fn (optional @onClick) @mode)}}
-  type="button"
-  data-test-mode={{@mode}}
-  ...attributes
->{{yield}}</button>
